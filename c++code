@@ -1,0 +1,35 @@
+class Solution {
+public:
+    
+    vector<string>an;
+    
+    void trav(int n,string t,vector<string>&v)
+    {
+         int n2=n%10;
+        if(n2==0)
+        {
+          //when all posible size of lettre is collected then add to answervector
+            an.push_back(t);
+            return;
+            
+        }
+        string s=v[n2];
+        for(int i=0;i<s.size();i++)
+        {
+           //take a char and call for the next
+            trav(n/10,s[i]+t,v);
+            
+           
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        vector<string>v;
+       
+        if(digits.size()==0)return v;
+        v={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+      int n=stoll(digits);
+        string t="";
+        trav(n,t,v);
+        return an;
+    }
+};
